@@ -2,9 +2,10 @@ package com.celso.reserva.eventservice.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class EventDto {
-	private Long id;
+	private UUID id;
 	private String name;
 	private LocalDateTime date;
 	private Integer capacity;
@@ -13,8 +14,8 @@ public class EventDto {
 	private String location;
 	private BigDecimal ticketPrice;
 
-	public Long getId() { return id; }
-	public void setId(Long id) { this.id = id; }
+	public UUID getId() { return id; }
+	public void setId(UUID id) { this.id = id; }
 
 	public String getName() { return name; }
 	public void setName(String name) { this.name = name; }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/events")
@@ -38,19 +39,19 @@ public class EventController {
 
     @GetMapping("/{id}")
     @Timed(value = "events.controller.get.latency")
-    public EventDto get(@PathVariable Long id) {
+    public EventDto get(@PathVariable UUID id) {
         return service.getById(id);
     }
 
     @PutMapping("/{id}")
     @Timed(value = "events.controller.update.latency")
-    public EventDto update(@PathVariable Long id, @RequestBody EventDto dto) {
+    public EventDto update(@PathVariable UUID id, @RequestBody EventDto dto) {
         return service.update(id, dto);
     }
 
     @DeleteMapping("/{id}")
     @Timed(value = "events.controller.delete.latency")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable UUID id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

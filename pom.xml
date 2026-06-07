@@ -41,9 +41,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- MyBatis instead of JPA -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>3.0.3</version>
         </dependency>
 
         <dependency>
@@ -63,12 +65,25 @@
             <artifactId>cloudwatch</artifactId>
             <version>2.20.61</version>
         </dependency>
+        <!-- Spring Cloud AWS SQS for seamless messaging -->
+        <dependency>
+            <groupId>io.awspring.cloud</groupId>
+            <artifactId>spring-cloud-aws-starter-sqs</artifactId>
+            <version>3.0.1</version>
+        </dependency>
 
         <!-- Structured JSON logs -->
         <dependency>
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
             <version>7.4</version>
+        </dependency>
+
+        <!-- UUID generation -->
+        <dependency>
+            <groupId>com.fasterxml.uuid</groupId>
+            <artifactId>java-uuid-generator</artifactId>
+            <version>5.1.0</version>
         </dependency>
 
         <!-- In-memory DB for local testing (optional) -->
