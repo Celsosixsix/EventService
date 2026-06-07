@@ -1,16 +1,12 @@
 package com.celso.reserva.eventservice.events;
 
-import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-@Entity
-@Table(name = "events")
 public class Event {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private UUID id;
 
     private String name;
 
@@ -20,7 +16,6 @@ public class Event {
 
     private Integer halfPriceLimit;
 
-    @Column(length = 4000)
     private String details;
 
     private String location;
@@ -31,8 +26,8 @@ public class Event {
     }
 
     // getters / setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public UUID getId() { return id; }
+    public void setId(UUID id) { this.id = id; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
@@ -55,4 +50,3 @@ public class Event {
     public BigDecimal getTicketPrice() { return ticketPrice; }
     public void setTicketPrice(BigDecimal ticketPrice) { this.ticketPrice = ticketPrice; }
 }
-
