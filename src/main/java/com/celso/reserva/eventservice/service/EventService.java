@@ -84,7 +84,7 @@ public class EventService {
         EventCreatedEvent eventCreatedEvent = new EventCreatedEvent(
                 eventId.toString(),
                 event.getCapacity() == null ? 0 : event.getCapacity(),
-                event.getName()
+                event.getTicketPrice().toString()
         );
         
         // Send to SQS using SqsTemplate (similar to OrderService pattern)

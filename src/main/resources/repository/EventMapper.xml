@@ -3,10 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.seuapp.repository.EventRepository">
+<mapper namespace="com.celso.reserva.eventservice.repository.EventRepository">
 
-    <resultMap id="EventResultMap" type="com.seuapp.model.Event">
-        <id property="id" column="id"/>
+    <resultMap id="EventResultMap" type="com.celso.reserva.eventservice.events.Event">
+        <id property="id" column="id" typeHandler="com.celso.reserva.eventservice.config.UuidBinaryTypeHandler"/>
         <result property="name" column="name"/>
         <result property="date" column="date"/>
         <result property="capacity" column="capacity"/>
@@ -16,12 +16,12 @@
         <result property="ticketPrice" column="ticket_price"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.seuapp.model.Event">
+    <insert id="insert" parameterType="com.celso.reserva.eventservice.events.Event">
         INSERT INTO events (id, name, date, capacity, half_price_limit, details, location, ticket_price)
         VALUES (#{id}, #{name}, #{date}, #{capacity}, #{halfPriceLimit}, #{details}, #{location}, #{ticketPrice})
     </insert>
 
-    <select id="findById" parameterType="java.util.UUID" resultMap="EventResultMap">
+    <select id="findById" resultMap="EventResultMap">
         SELECT id, name, date, capacity, half_price_limit, details, location, ticket_price
         FROM events
         WHERE id = #{id}
@@ -32,7 +32,7 @@
         FROM events
     </select>
 
-    <update id="update" parameterType="com.seuapp.model.Event">
+    <update id="update" parameterType="com.celso.reserva.eventservice.events.Event">
         UPDATE events
         SET name = #{name},
             date = #{date},

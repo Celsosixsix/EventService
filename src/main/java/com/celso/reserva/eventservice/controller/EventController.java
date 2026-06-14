@@ -6,6 +6,7 @@ import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
@@ -25,6 +26,7 @@ public class EventController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     @Timed(value = "events.controller.create.latency", description = "Latency of event create endpoint")
   public ResponseEntity<EventDto> create(@Valid @RequestBody EventDto dto) {
         EventDto created = service.create(dto);
@@ -33,24 +35,28 @@ public class EventController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     @Timed(value = "events.controller.list.latency")
     public List<EventDto> list() {
         return service.list();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Timed(value = "events.controller.get.latency")
     public EventDto get(@PathVariable UUID id) {
         return service.getById(id);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Timed(value = "events.controller.update.latency")
    public EventDto update(@PathVariable UUID id, @Valid @RequestBody EventDto dto) {
         return service.update(id, dto);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Timed(value = "events.controller.delete.latency")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
         service.delete(id);
