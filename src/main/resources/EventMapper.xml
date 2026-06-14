@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.seuapp.repository.EventRepository">
+
+    <resultMap id="EventResultMap" type="com.seuapp.model.Event">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="date" column="date"/>
+        <result property="capacity" column="capacity"/>
+        <result property="halfPriceLimit" column="half_price_limit"/>
+        <result property="details" column="details"/>
+        <result property="location" column="location"/>
+        <result property="ticketPrice" column="ticket_price"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.seuapp.model.Event">
+        INSERT INTO events (id, name, date, capacity, half_price_limit, details, location, ticket_price)
+        VALUES (#{id}, #{name}, #{date}, #{capacity}, #{halfPriceLimit}, #{details}, #{location}, #{ticketPrice})
+    </insert>
+
+    <select id="findById" parameterType="java.util.UUID" resultMap="EventResultMap">
+        SELECT id, name, date, capacity, half_price_limit, details, location, ticket_price
+        FROM events
+        WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="EventResultMap">
+        SELECT id, name, date, capacity, half_price_limit, details, location, ticket_price
+        FROM events
+    </select>
+
+    <update id="update" parameterType="com.seuapp.model.Event">
+        UPDATE events
+        SET name = #{name},
+            date = #{date},
+            capacity = #{capacity},
+            half_price_limit = #{halfPriceLimit},
+            details = #{details},
+            location = #{location},
+            ticket_price = #{ticketPrice}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.util.UUID">
+        DELETE FROM events WHERE id = #{id}
+    </delete>
+
+</mapper>

@@ -60,7 +60,11 @@ public class EventService {
                 repository.insert(e);
                 log.info("event.created id={}", e.getId());
                 // publish to SQS (best-effort non-blocking)
-                try { publishEventCreated(e.getId()); } catch (Exception ex) { log.warn("Failed to publish event to SQS: {}", ex.getMessage()); }
+                try {
+                    publishEventCreated(e.getId());
+                } catch (Exception ex) {
+                    log.warn("Failed to publish event to SQS: {}", ex.getMessage());
+                }
                 return entityToDto(e);
             } catch (Exception ex) {
                 errorCounter.increment();
