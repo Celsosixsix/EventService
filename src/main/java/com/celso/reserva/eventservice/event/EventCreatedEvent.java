@@ -11,13 +11,13 @@ public class EventCreatedEvent {
     @JsonProperty("capacity")
     private Integer capacity;
     
-    @JsonProperty("name")
-    private String name;
+    @JsonProperty("ticketPrice")
+    private String ticketPrice;
     
-    public EventCreatedEvent(String eventId, Integer capacity, String name) {
+    public EventCreatedEvent(String eventId, Integer capacity, String ticketPrice) {
         this.eventId = eventId;
         this.capacity = capacity;
-        this.name = name;
+        this.ticketPrice = ticketPrice;
     }
     
     public EventCreatedEvent() {
@@ -29,7 +29,7 @@ public class EventCreatedEvent {
     public Integer getCapacity() { return capacity; }
     public void setCapacity(Integer capacity) { this.capacity = capacity; }
     
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getTicketPrice() { return ticketPrice; }
+    public void setTicketPrice(String ticketPrice) { this.ticketPrice = ticketPrice; }
 }
 
