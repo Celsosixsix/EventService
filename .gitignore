@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Variaveis de ambiente locais (NUNCA commitar - contem credenciais)
+.env
+.env.local
+.env.*.local
+*.env

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.net.URI;
 import java.util.List;
@@ -25,7 +26,7 @@ public class EventController {
 
     @PostMapping
     @Timed(value = "events.controller.create.latency", description = "Latency of event create endpoint")
-    public ResponseEntity<EventDto> create(@RequestBody EventDto dto) {
+  public ResponseEntity<EventDto> create(@Valid @RequestBody EventDto dto) {
         EventDto created = service.create(dto);
         log.info("event.created.controller id={}", created.getId());
         return ResponseEntity.created(URI.create("/events/" + created.getId())).body(created);
@@ -45,7 +46,7 @@ public class EventController {
 
     @PutMapping("/{id}")
     @Timed(value = "events.controller.update.latency")
-    public EventDto update(@PathVariable UUID id, @RequestBody EventDto dto) {
+   public EventDto update(@PathVariable UUID id, @Valid @RequestBody EventDto dto) {
         return service.update(id, dto);
     }
 
